@@ -1,0 +1,19 @@
+.btn-green {
+    background-color: green;
+    color: white;
+}
+
+.btn-red {
+    background-color: red;
+    color: white;
+}
+
+.btn-tab-active {
+    background-color: green;
+    color: white;
+}
+
+.btn-tab-inactive {
+    background-color: white;
+    color: black;
+}

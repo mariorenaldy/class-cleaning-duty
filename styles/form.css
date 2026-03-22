@@ -1,0 +1,14 @@
+.form-input {
+    border: 1px solid black;
+}
+
+.form-input-header {
+    background-color: green;
+    color: white;
+    padding-left: 0.5rem;
+    border-bottom: 1px solid black;
+}
+
+.form-input-content {
+    padding: 1rem;
+}

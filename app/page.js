@@ -2,8 +2,8 @@
 
 import {useState} from "react";
 import Title from "../components/title";
-import ScheduleInput from "../components/schedule-input";
-import ScheduleTable from "../components/schedule-table";
+import Tabs from "../components/tabs";
+import TabContent from "../components/tab-content";
 
 export default function HomePage() {
     const students = [
@@ -13,13 +13,23 @@ export default function HomePage() {
     ];
 
     const [scheduleData, setScheduleData] = useState([]);
+    const [historyData, setHistoryData] = useState([]);
     const [dateInput, setDateInput] = useState(new Date());
+    const [selectedTab, setSelectedTab] = useState('Schedule');
 
     return (
-        <div className="root">
+        <div className="content">
             <Title />
-            <ScheduleInput dateInput={dateInput} setDateInput={setDateInput} students={students} setScheduleData={setScheduleData} />
-            <ScheduleTable scheduleData={scheduleData} />
+            <Tabs selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
+            <TabContent
+                selectedTab={selectedTab}
+                dateInput={dateInput}
+                students={students}
+                scheduleData={scheduleData}
+                setScheduleData={setScheduleData}
+                historyData={historyData}
+                setHistoryData={setHistoryData}
+            />
         </div>
     )
 }

@@ -1,7 +1,7 @@
-import {dateToISOString} from "../lib/date";
-import {generateSchedule} from "../lib/schedule-generator";
+import {generateSchedule} from "../../lib/schedule-generator";
+import {dateToString} from "../../lib/date";
 
-export default function ScheduleInput({dateInput, setDateInput, students, setScheduleData}) {
+export default function ScheduleInput({dateInput, students, setScheduleData}) {
     function callGenerateSchedule() {
         const generatedSchedule = generateSchedule(dateInput, students);
         setScheduleData(generatedSchedule)
@@ -13,7 +13,7 @@ export default function ScheduleInput({dateInput, setDateInput, students, setSch
 
     return (
         <form>
-            <input type="date" disabled={true} value={dateToISOString(dateInput)}></input><br/>
+            <input type="date" disabled={true} value={dateToString(dateInput)}></input><br/>
             <button type="button" className="btn-green" onClick={callGenerateSchedule}>Generate schedule</button>
             <button type="button" className="btn-red" onClick={deleteSchedule}>Delete schedule</button>
         </form>

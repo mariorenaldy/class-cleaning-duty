@@ -1,0 +1,29 @@
+dialog {
+    width: 30%;
+}
+
+.dialog-container {
+    padding: 0.5rem;
+}
+
+.dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.dialog-title {
+    margin: 0;
+    padding-top: 1rem;
+    padding-left: 1rem;
+}
+
+.dialog-close-btn {
+    background-color: transparent;
+    border: none;
+    font-size: 1.1rem;
+}
+
+.dialog-content {
+    margin: 1rem;
+}

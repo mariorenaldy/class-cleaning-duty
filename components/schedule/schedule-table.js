@@ -1,8 +1,13 @@
-import {dateToLocalString} from "../lib/date";
+import {dateToFormattedString} from "../../lib/date";
 
 export default function ScheduleTable({scheduleData}) {
     return (
-        <table>
+        <table style={{ width: "25rem" }}>
+            <colgroup>
+                <col style={{ width: "3rem" }} />
+                <col />
+                <col />
+            </colgroup>
             <tbody>
                 <tr>
                     <th>No.</th>
@@ -13,7 +18,7 @@ export default function ScheduleTable({scheduleData}) {
                 {scheduleData.map((row) => (
                     <tr key={row.index}>
                         <td className="cell-number">{row.index}</td>
-                        <td>{dateToLocalString(row.date)}</td>
+                        <td>{dateToFormattedString(row.date)}</td>
                         <td>{row.name}</td>
                     </tr>
                 ))}

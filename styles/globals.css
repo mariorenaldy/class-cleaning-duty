@@ -1,0 +1,14 @@
+@import "./utilities.css";
+@import "./button.css";
+@import "./dialog.css";
+@import "./form.css";
+@import "./table.css";
+@import "./tab.css";
+
+input, textarea, button, select {
+    font-family: inherit;
+}
+
+.content > *:not(:last-child) {
+    margin-bottom: 1rem;
+}

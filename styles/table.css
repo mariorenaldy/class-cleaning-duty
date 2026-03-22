@@ -1,0 +1,27 @@
+table {
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 0.2rem;
+    border: 1px solid black;
+}
+
+.table-container {
+    width: fit-content;
+}
+
+.table-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 0.5rem;
+}
+
+.table-footer {
+    margin-top: 1rem;
+}
+
+.cell-number {
+    text-align: right;
+}
