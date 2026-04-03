@@ -25,3 +25,7 @@ th, td {
 .cell-number {
     text-align: right;
 }
+
+.cell-button {
+    text-align: center;
+}

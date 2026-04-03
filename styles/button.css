@@ -8,6 +8,10 @@
     color: white;
 }
 
+.btn-orange {
+    background-color: orange;
+}
+
 .btn-tab-active {
     background-color: green;
     color: white;
