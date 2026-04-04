@@ -1,7 +1,7 @@
 import {useState} from "react";
 import FileUploadField from "../ui/file-upload-field";
 
-export default function HistoryForm({students, historyData, setHistoryData}) {
+export default function HistoryForm({students, historyData, setHistoryData, addStudentScore, subtractStudentScore}) {
     const [presentStatus, setPresentStatus] = useState(true);
 
     function saveHistory(e) {
@@ -15,14 +15,25 @@ export default function HistoryForm({students, historyData, setHistoryData}) {
             objFile = URL.createObjectURL(fileData);
         }
 
+        const studentName = formData.get("student-name");
+        const status = formData.get("status");
+
         const data = {
             index: historyData.length + 1,
             date: formData.get("date"),
-            studentName: formData.get("student-name"),
-            status: formData.get("status"),
+            studentName: studentName,
+            status: status,
             description: formData.get("status") === "Present" ? formData.get("description") : null,
             imagePreview: objFile,
         };
+
+        // Add or subtract score based on status
+        const studentIndex = students.find(s => s.name === studentName)?.index;
+        if (status === "Present") {
+            addStudentScore(studentIndex, 10);
+        } else {
+            subtractStudentScore(studentIndex, 10);
+        }
 
         // localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
         setHistoryData((prev) => [...prev, data]);
@@ -38,7 +49,7 @@ export default function HistoryForm({students, historyData, setHistoryData}) {
                 <label htmlFor="student-name">Student Name</label><br/>
                 <select id="student-name" name="student-name">
                     {students.map((student) => (
-                        <option key={student} value={student}>{student}</option>
+                        <option key={student.name} value={student.name}>{student.name}</option>
                     ))}
                 </select><br/>
 

@@ -3,7 +3,7 @@ import {dateToFormattedString} from "../../lib/date";
 import ImagePreviewDialog from "../ui/image-preview-dialog";
 import {useRef, useState} from "react";
 
-export default function HistoryTable({students, historyData, setHistoryData}) {
+export default function HistoryTable({students, historyData, setHistoryData, addStudentScore, subtractStudentScore}) {
     const [showPreview, setShowPreview] = useState(false);
     const [imagePreview, setImagePreview] = useState(null);
     const dialogRef = useRef(null);
@@ -31,8 +31,6 @@ export default function HistoryTable({students, historyData, setHistoryData}) {
             <table style={{ width: "50rem" }}>
                 <colgroup>
                     <col style={{ width: "3rem" }} />
-                    <col />
-                    <col />
                 </colgroup>
                 <tbody>
                     <tr>
@@ -64,7 +62,7 @@ export default function HistoryTable({students, historyData, setHistoryData}) {
                 <ImagePreviewDialog imagePreview={imagePreview} setShowPreview={setShowPreview} />
             )}
 
-            <HistoryDialog dialogRef={dialogRef} students={students} historyData={historyData} setHistoryData={setHistoryData} />
+            <HistoryDialog dialogRef={dialogRef} students={students} historyData={historyData} setHistoryData={setHistoryData} addStudentScore={addStudentScore} subtractStudentScore={subtractStudentScore} />
         </div>
     );
 }
