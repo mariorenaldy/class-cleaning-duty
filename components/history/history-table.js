@@ -1,9 +1,9 @@
 import HistoryDialog from "./history-dialog";
-import {dateToFormattedString} from "../../lib/date";
+import {dateToFormattedString} from "../../lib/date-utils";
 import ImagePreviewDialog from "../ui/image-preview-dialog";
 import {useRef, useState} from "react";
 
-export default function HistoryTable({students, historyData, setHistoryData, addStudentScore, subtractStudentScore}) {
+export default function HistoryTable({scheduleData, students, historyData, setHistoryData, addStudentScore, subtractStudentScore}) {
     const [showPreview, setShowPreview] = useState(false);
     const [imagePreview, setImagePreview] = useState(null);
     const dialogRef = useRef(null);
@@ -36,7 +36,7 @@ export default function HistoryTable({students, historyData, setHistoryData, add
                     <tr>
                         <th>No.</th>
                         <th>Date</th>
-                        <th>Name</th>
+                        <th>Student</th>
                         <th>Status</th>
                         <th>Description</th>
                         <th>Preview</th>
@@ -62,7 +62,7 @@ export default function HistoryTable({students, historyData, setHistoryData, add
                 <ImagePreviewDialog imagePreview={imagePreview} setShowPreview={setShowPreview} />
             )}
 
-            <HistoryDialog dialogRef={dialogRef} students={students} historyData={historyData} setHistoryData={setHistoryData} addStudentScore={addStudentScore} subtractStudentScore={subtractStudentScore} />
+            <HistoryDialog dialogRef={dialogRef} scheduleData={scheduleData} students={students} historyData={historyData} setHistoryData={setHistoryData} addStudentScore={addStudentScore} subtractStudentScore={subtractStudentScore} />
         </div>
     );
 }

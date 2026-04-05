@@ -48,6 +48,7 @@ export default function HomePage() {
             <TabContent
                 selectedTab={selectedTab}
                 dateInput={dateInput}
+                setDateInput={setDateInput}
                 students={students}
                 scheduleData={scheduleData}
                 setScheduleData={setScheduleData}

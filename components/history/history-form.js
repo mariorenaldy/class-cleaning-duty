@@ -1,13 +1,60 @@
 import {useState} from "react";
 import FileUploadField from "../ui/file-upload-field";
+import {dateToString} from "../../lib/date-utils";
+import {getEarliestScheduleWithoutHistory} from "../../lib/schedule-utils";
 
-export default function HistoryForm({students, historyData, setHistoryData, addStudentScore, subtractStudentScore}) {
+export default function HistoryForm({scheduleData, students, historyData, setHistoryData, addStudentScore, subtractStudentScore}) {
     const [presentStatus, setPresentStatus] = useState(true);
+
+    function validateInput(formData){
+        if (scheduleData.length === 0) {
+            alert("No schedule found");
+            return false;
+        }
+
+        if (!formData.get("date")) {
+            alert("Date is required");
+            return false;
+        }
+
+        const file = formData.get("file-data");
+        if (!file || file.size === 0) {
+            alert("File is required");
+            return false;
+        }
+
+        const earliestScheduleWithoutHistory = getEarliestScheduleWithoutHistory(scheduleData, historyData);
+
+        if (!earliestScheduleWithoutHistory) {
+            alert("No next schedule to be input");
+            return false;
+        }
+
+        console.log(earliestScheduleWithoutHistory);
+
+        const dateInput = formData.get("date");
+        if (dateToString(earliestScheduleWithoutHistory.date) !== dateInput) {
+            alert("Date doesn't match the next schedule to be input (must be input in order)");
+            return false;
+        }
+
+        const studentInput = formData.get("student-name");
+        if (earliestScheduleWithoutHistory.name !== studentInput) {
+            alert("Student doesn't match with the one assigned in the schedule");
+            return false;
+        }
+
+        return true;
+    }
 
     function saveHistory(e) {
         e.preventDefault();
 
         const formData = new FormData(e.currentTarget);
+        if (!validateInput(formData)) {
+            return;
+        }
+
         const fileData = formData.get("file-data");
 
         let objFile = null;
@@ -44,9 +91,9 @@ export default function HistoryForm({students, historyData, setHistoryData, addS
             <div className="form-input-header">Form Input</div>
             <div className="form-input-content content">
                 <label htmlFor="date">Date</label><br/>
-                <input type="date" id="date" name="date" required={false} /><br/>
+                <input type="date" id="date" name="date" /><br/>
 
-                <label htmlFor="student-name">Student Name</label><br/>
+                <label htmlFor="student-name">Student</label><br/>
                 <select id="student-name" name="student-name">
                     {students.map((student) => (
                         <option key={student.name} value={student.name}>{student.name}</option>

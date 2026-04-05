@@ -1,7 +1,7 @@
 import HistoryForm from "./history-form";
 import {useRef} from "react";
 
-export default function HistoryDialog({dialogRef, students, historyData, setHistoryData, addStudentScore, subtractStudentScore}) {
+export default function HistoryDialog({dialogRef, scheduleData, students, historyData, setHistoryData, addStudentScore, subtractStudentScore}) {
     // const STORAGE_KEY = "cleaning-history";
     const mouseDownOutsideDialogRef = useRef(false);
 
@@ -52,7 +52,7 @@ export default function HistoryDialog({dialogRef, students, historyData, setHist
             </div>
 
             <div className="dialog-content content">
-                <HistoryForm students={students} historyData={historyData} setHistoryData={setHistoryData} addStudentScore={addStudentScore} subtractStudentScore={subtractStudentScore} />
+                <HistoryForm scheduleData={scheduleData} students={students} historyData={historyData} setHistoryData={setHistoryData} addStudentScore={addStudentScore} subtractStudentScore={subtractStudentScore} />
             </div>
         </dialog>
     )

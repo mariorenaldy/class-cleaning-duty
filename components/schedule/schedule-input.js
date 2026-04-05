@@ -1,14 +1,16 @@
-import {generateSchedule} from "../../lib/schedule-generator";
-import {dateToString} from "../../lib/date";
+import {generateSchedule} from "../../lib/schedule-utils";
+import {addDays, dateToString} from "../../lib/date-utils";
 
-export default function ScheduleInput({dateInput, students, setScheduleData}) {
+export default function ScheduleInput({dateInput, setDateInput, students, setScheduleData}) {
     function callGenerateSchedule() {
         const generatedSchedule = generateSchedule(dateInput, students);
-        setScheduleData(generatedSchedule)
+        setScheduleData((prev) => [...prev, ...generatedSchedule]);
+        setDateInput((prev) => addDays(prev, 7));
     }
 
     function deleteSchedule() {
         setScheduleData([]);
+        setDateInput(new Date());
     }
 
     return (

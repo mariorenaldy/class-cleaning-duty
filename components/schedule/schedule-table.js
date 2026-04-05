@@ -1,8 +1,8 @@
-import {dateToFormattedString} from "../../lib/date";
+import {dateToFormattedString, getDayString} from "../../lib/date-utils";
 
 export default function ScheduleTable({scheduleData}) {
     return (
-        <table style={{ width: "25rem" }}>
+        <table style={{ width: "30rem" }}>
             <colgroup>
                 <col style={{ width: "3rem" }} />
                 <col />
@@ -12,13 +12,15 @@ export default function ScheduleTable({scheduleData}) {
                 <tr>
                     <th>No.</th>
                     <th>Date</th>
-                    <th>Name</th>
+                    <th>Day</th>
+                    <th>Student</th>
                 </tr>
 
-                {scheduleData.map((row) => (
-                    <tr key={row.index}>
-                        <td className="cell-number">{row.index}</td>
+                {scheduleData.map((row, index) => (
+                    <tr key={index}>
+                        <td className="cell-number">{index + 1}</td>
                         <td>{dateToFormattedString(row.date)}</td>
+                        <td>{getDayString(row.date)}</td>
                         <td>{row.name}</td>
                     </tr>
                 ))}
